@@ -11,7 +11,6 @@ public class DBWorker {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "123qwe";
     private static final String URL = "jdbc:mysql://localhost:3306/mysql?useSSL=false";
-
     private Connection connection;
 
     public void setConnection(Connection connection) {
@@ -25,7 +24,6 @@ public class DBWorker {
 
 
     public Connection getConnection() throws SQLException {
-
         return connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 }
