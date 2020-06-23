@@ -1,4 +1,4 @@
-package data.other;
+package other;
 
 import java.io.FileWriter;
 import java.io.IOException;

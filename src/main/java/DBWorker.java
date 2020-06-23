@@ -1,5 +1,3 @@
-package data;
-
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 
 import java.sql.Connection;
