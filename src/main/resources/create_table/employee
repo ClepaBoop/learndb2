@@ -1,0 +1,9 @@
+product_price = "CREATE TABLE learndb.product_price (\n" +
+            "    product_id INT NOT NULL AUTO_INCREMENT,\n" +
+            "    store_id INT NOT NULL,\n" +
+            "    price NUMERIC (15, 2) NOT NULL,\n" +
+            "    CONSTRAINT product_price__pk PRIMARY KEY (product_id, store_id),\n" +
+            "    CONSTRAINT product_price__price__ck CHECK (price > 0)\n" +
+            ");";
+
+product_priceCREATE_INDEX ="CREATE INDEX product_price__store_id ON learndb.product_price (store_id);";

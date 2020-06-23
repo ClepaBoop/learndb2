@@ -1,0 +1,11 @@
+product = "CREATE TABLE learndb.product (\n" +
+            "    product_id INT NOT NULL AUTO_INCREMENT,\n" +
+            "    category_id INT NOT NULL,\n" +
+            "    name VARCHAR(45) NOT NULL,\n" +
+            "    description VARCHAR(45),\n" +
+            "    CONSTRAINT product__pk PRIMARY KEY (product_id),\n" +
+            "    CONSTRAINT product__to__category FOREIGN KEY (category_id) REFERENCES category (category_id),\n" +
+            "    CONSTRAINT product__name__uk UNIQUE (category_id, name)\n" +
+            ");";
+
+productCREATE_INDEX = "CREATE INDEX product__name ON learndb.product (name);";

@@ -1,0 +1,11 @@
+purchase = "CREATE TABLE learndb.purchase (\n" +
+            "    purchase_id INT NOT NULL AUTO_INCREMENT,\n" +
+            "    purchase_date date NOT NULL,\n" +
+            "    store_id INT NOT NULL,\n" +
+            "    employee_id INT,\n" +
+            "    CONSTRAINT purchase__pk PRIMARY KEY (purchase_id),\n" +
+            "    CONSTRAINT purchase__to__employee FOREIGN KEY (employee_id) REFERENCES employee (employee_id),\n" +
+            "    CONSTRAINT purchase__to__store FOREIGN KEY (store_id) REFERENCES store (store_id)\n" +
+            ");";
+
+purchaseCREATE_INDEX ="CREATE INDEX purchase__employee_id ON learndb.purchase (employee_id);";
