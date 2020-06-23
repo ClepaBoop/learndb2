@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 
 public class ListClassesName {
 
-    public static void main(String[] args) throws IOException {
-        ListClassesName name = new ListClassesName("./src/main/java/data/tables");
-        name.classesName().forEach(s -> System.out.println(s));
-
-    }
+//    public static void main(String[] args) throws IOException {
+//        ListClassesName name = new ListClassesName("./src/main/java/data/tables");
+//        name.classesName().forEach(s -> System.out.println(s));
+//
+//    }
 
     private String path;
     public ListClassesName(String path) {

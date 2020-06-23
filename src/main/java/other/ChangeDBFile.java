@@ -14,20 +14,20 @@ public class ChangeDBFile {
         this.filesName = filesName;
     }
 
-    public static void main(String[] args) throws IOException {
-        ArrayList<String> list = new ArrayList<>();
-        list.add(".\\src\\main\\java\\data\\tables\\scratch\\huy.java");
-        ChangeDBFile changeDBFile = new ChangeDBFile(list);
-        changeDBFile.changeNewDB();
-    }
+//    public static void main(String[] args) throws IOException {
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add(".\\src\\main\\java\\data\\huy.java");
+//        ChangeDBFile changeDBFile = new ChangeDBFile(list);
+//        changeDBFile.changeNewDB();
+//    }
 
-    public void changeNewDB() throws IOException {
+    public void changeNewDB(String oldName, String newName) throws IOException {
         for (String file : filesName) {
 
             String str = Files.readString(Paths.get(file));
             System.out.println("Huy   " + str);
 
-            str = str.replace("huy", "learndb2");
+            str = str.replace(oldName, newName);
 
             FileWriter fr = new FileWriter(file); // After '.' write
 
