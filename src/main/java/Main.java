@@ -1,4 +1,5 @@
 import data.CreateTables;
+import data.FillingTables;
 import other.ChangeDBFile;
 import other.ListClassesName;
 
@@ -10,7 +11,7 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
 
         DBWorker dbWorker = new DBWorker();
         Statement statement = dbWorker.getConnection().createStatement();
@@ -18,25 +19,16 @@ public class Main {
 //        String execute = CreateDropDB.createDB("learndb2");
 //        statement.execute(execute);
 
-        ListClassesName classesName = new ListClassesName(".\\\\src\\\\main\\\\java\\\\data");
+//        ListClassesName classesName = new ListClassesName(".\\\\src\\\\main\\\\java\\\\data");
+//
+//        ArrayList<String> listClassName =  listClassName = classesName.classesName();
+//
+//
+//        ChangeDBFile dbFile = new ChangeDBFile(listClassName);
+//
+//            dbFile.changeNewDB("learndb", "learndb2");
 
-        ArrayList<String> listClassName = null;
-        try {
-            listClassName = classesName.classesName();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println(Arrays.toString(listClassName.toArray()));
-
-        ChangeDBFile dbFile = new ChangeDBFile(listClassName);
-        try {
-            dbFile.changeNewDB("learndb", "learndb2");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-//        ArrayList<String> list = CreateTables.createTables();
+//        ArrayList<String> list = FillingTables.FillingTables();
 //        for (String exe: list) {
 //            statement.execute(exe);
 //        }
