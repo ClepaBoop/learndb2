@@ -2,9 +2,11 @@ import data.CreateTables;
 import data.FillingTables;
 import other.ChangeDBFile;
 import other.ListClassesName;
+import request.ClippingAndSorting;
 import request.Introduction;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -34,9 +36,19 @@ public class Main {
 //            statement.execute(exe);
 //        }
 
-        Introduction introduction = new Introduction();
-        String selectCity = introduction.getSelectCity();
-        System.out.println(selectCity);
+
+        String query = ClippingAndSorting.limitOffset;
+
+        ResultSet resultSet = statement.executeQuery(query);
+//        System.out.println(resultSet);
+
+        while (resultSet.next()) {
+            System.out.print(resultSet.getString(1) + " ");
+            System.out.print(resultSet.getString(2) + " ");
+            System.out.print(resultSet.getString(3) + " ");
+//            System.out.print(resultSet.getString(4));
+            System.out.println();
+        }
 
         statement.close();
         dbWorker.getConnection().close();
