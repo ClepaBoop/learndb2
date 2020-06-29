@@ -2,6 +2,7 @@ import data.CreateTables;
 import data.FillingTables;
 import other.ChangeDBFile;
 import other.ListClassesName;
+import request.Introduction;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -33,6 +34,9 @@ public class Main {
 //            statement.execute(exe);
 //        }
 
+        Introduction introduction = new Introduction();
+        String selectCity = introduction.getSelectCity();
+        System.out.println(selectCity);
 
         statement.close();
         dbWorker.getConnection().close();
