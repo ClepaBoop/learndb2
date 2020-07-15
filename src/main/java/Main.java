@@ -4,6 +4,7 @@ import other.ChangeDBFile;
 import other.ListClassesName;
 import request.ClippingAndSorting;
 import request.Introduction;
+import request.Join;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -37,7 +38,7 @@ public class Main {
 //        }
 
 
-        String query = ClippingAndSorting.limitOffset;
+        String query = Join.crossJoin;
 
         ResultSet resultSet = statement.executeQuery(query);
 //        System.out.println(resultSet);
@@ -45,8 +46,8 @@ public class Main {
         while (resultSet.next()) {
             System.out.print(resultSet.getString(1) + " ");
             System.out.print(resultSet.getString(2) + " ");
-            System.out.print(resultSet.getString(3) + " ");
-//            System.out.print(resultSet.getString(4));
+//            System.out.print(resultSet.getString(3) + " ");
+//            System.out.print(resultSet.getString(4) + " ");
             System.out.println();
         }
 
