@@ -1,16 +1,18 @@
-"select
-         r.store_id,
-         r.rank_id,
-         r2.rank_id as rank_id_other
- from
-         rank r
- join
-         rank r2
- on
-         r.store_id = r2.store_id
- and
-         r.rank_id != r2.rank_id
- order by
-         r.store_id,
-         r.rank_id,
-         r2.rank_id"
+select 
+                                                            s.name as store_name,  
+                                                            e.first_name || ' ' || e.last_name as manager_full_name,  
+                                                            count(e.manager_id) as amount_employees,
+                                                            count(*)  
+                                                    from     
+                                                            store s
+                                                    left join 
+                                                            employee e
+                                                    on 
+                                                            s.store_id = e.store_id
+                                                    group by 
+                                                            s.name,
+                                                            manager_full_name,
+                                                            e.manager_id
+                                                    order by
+                                                            store_name,
+                                                            manager_full_name

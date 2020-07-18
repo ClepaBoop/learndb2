@@ -100,8 +100,8 @@ public class Join {
                                         "        p.name as product_name, \n" +
                                         "        p.description \n" +
                                         "from\n" +
-                                        "        product p,\n" +
-                                        "        category c\n" +
+                                        "        learndb2.product p,\n" +
+                                        "        learndb2.category c\n" +
                                         "where\n" +
                                         "        c.category_id = p.category_id\n" +
                                         "and \n" +
