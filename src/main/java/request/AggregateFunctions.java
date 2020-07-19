@@ -147,7 +147,7 @@ public class AggregateFunctions {
                                                         "        rank_id, \n" +
                                                         "        count(employee_id)count_employees \n" +
                                                         "from\n" +
-                                                        "        employee\n" +
+                                                        "        learndb2.employee\n" +
                                                         "group by cube\n" +
                                                         "        (store_id, rank_id, employee_id)\n" +
                                                         "order by\n" +

@@ -1,18 +1,15 @@
-select 
-                                                            s.name as store_name,  
-                                                            e.first_name || ' ' || e.last_name as manager_full_name,  
-                                                            count(e.manager_id) as amount_employees,
-                                                            count(*)  
-                                                    from     
-                                                            store s
-                                                    left join 
-                                                            employee e
-                                                    on 
-                                                            s.store_id = e.store_id
-                                                    group by 
-                                                            s.name,
-                                                            manager_full_name,
-                                                            e.manager_id
-                                                    order by
-                                                            store_name,
-                                                            manager_full_name
+select
+                                                    name,
+                                                    'category' as type 
+                                            from
+                                                    learndb2.category
+                                            where
+                                                    name ilike '%no%'
+                                            union
+                                            select
+                                                    name,
+                                                    'product' as type
+                                            from
+                                                    learndb2.product
+                                            where
+                                                    name ilike '%no%';

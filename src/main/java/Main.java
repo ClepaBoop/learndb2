@@ -2,10 +2,7 @@ import data.CreateTables;
 import data.FillingTables;
 import other.ChangeDBFile;
 import other.ListClassesName;
-import request.AggregateFunctions;
-import request.ClippingAndSorting;
-import request.Introduction;
-import request.Join;
+import request.*;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -39,16 +36,16 @@ public class Main {
 //        }
 
 
-        String query = AggregateFunctions.rollup_11of13;
+        String query = SetOperations.intersectingLines_3_8;
 
         ResultSet resultSet = statement.executeQuery(query);
 //        System.out.println(resultSet);
 
         while (resultSet.next()) {
             System.out.print(resultSet.getString(1) + " ");
-            System.out.print(resultSet.getString(2) + " ");
-            System.out.print(resultSet.getString(3) + " ");
-            System.out.print(resultSet.getString(4) + " ");
+//            System.out.print(resultSet.getString(2) + " ");
+//            System.out.print(resultSet.getString(3) + " ");
+//            System.out.print(resultSet.getString(4) + " ");
             System.out.println();
         }
 
