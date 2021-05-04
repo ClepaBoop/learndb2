@@ -1,15 +1,31 @@
 select
-                                                    name,
-                                                    'category' as type 
-                                            from
-                                                    learndb2.category
-                                            where
-                                                    name ilike '%no%'
-                                            union
-                                            select
-                                                    name,
-                                                    'product' as type
-                                            from
-                                                    learndb2.product
-                                            where
-                                                    name ilike '%no%';
+        c.name as category_name,
+        p.name as product_name,
+        pp.price
+from
+        category c
+join
+        product p
+on
+        c.category_id = p.category_id
+join
+        product_price pp
+on
+        pp.product_id = p.product_id
+where pp.price = (
+                    select
+                            max(pppp.price)
+                    from
+                            product_price pppp
+                    where
+                            pppp.product_id = pp.product_id
+                  )
+order by
+        c.name,
+        p.name
+
+
+
+
+
+

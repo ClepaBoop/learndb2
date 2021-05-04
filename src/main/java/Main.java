@@ -36,14 +36,14 @@ public class Main {
 //        }
 
 
-        String query = SetOperations.intersectingLines_3_8;
+        String query = Subqueries.checking_if_a_line_is_missing_9_9;
 
         ResultSet resultSet = statement.executeQuery(query);
 //        System.out.println(resultSet);
 
         while (resultSet.next()) {
             System.out.print(resultSet.getString(1) + " ");
-//            System.out.print(resultSet.getString(2) + " ");
+            System.out.print(resultSet.getString(2) + " ");
 //            System.out.print(resultSet.getString(3) + " ");
 //            System.out.print(resultSet.getString(4) + " ");
             System.out.println();

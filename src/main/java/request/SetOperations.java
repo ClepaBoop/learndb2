@@ -81,26 +81,44 @@ public class SetOperations {
                                                 "        learndb2.product\n" +
                                                 "where\n" +
                                                 "        name ilike '%no%'";
-    public static String coincidence_6_8 =  "select\n" +
-                                            "        product_id,\n" +
-                                            "        price,\n" +
-                                            "        count(*):: text\n" +
+    
+    
+//    public static String coincidence_6_8 =  "select\n" +
+//                                            "        product_id,\n" +
+//                                            "        price,\n" +
+//                                            "        count(*):: text\n" +
+//                                            "from\n" +
+//                                            "        product_price \n" +
+//                                            "group by\n" +
+//                                            "        product_id,\n" +
+//                                            "        price\n" +
+//                                            "\n" +
+//                                            "union\n" +
+//                                            "select\n" +
+//                                            "        product_id,\n" +
+//                                            "        price,\n" +
+//                                            "        count(*):: text\n" +
+//                                            "from\n" +
+//                                            "        purchase_item \n" +
+//                                            "group by\n" +
+//                                            "        product_id,\n" +
+//                                            "        price";
+
+    // TODO: 02.05.2021 count это колонка в таблице была. Не заметил в прош раз
+    public static String coincidence_6_8 = "select\n" +
+                                            "  product_id ,\n" +
+                                            "  price ,\n" +
+                                            "  'отсутствует' as count\n" +
                                             "from\n" +
-                                            "        product_price \n" +
-                                            "group by\n" +
-                                            "        product_id,\n" +
-                                            "        price\n" +
-                                            "\n" +
-                                            "union\n" +
+                                            "  product_price\n" +
+                                            "union all\n" +
                                             "select\n" +
-                                            "        product_id,\n" +
-                                            "        price,\n" +
-                                            "        count(*):: text\n" +
+                                            "  product_id ,\n" +
+                                            "  price ,\n" +
+                                            "  count::text\n" +
                                             "from\n" +
-                                            "        purchase_item \n" +
-                                            "group by\n" +
-                                            "        product_id,\n" +
-                                            "        price";
+                                            "  purchase_item";
+
     public static String sorted_7_8 = "select\n" +
                                 "        name,\n" +
                                 "        'Категория' as type \n" +

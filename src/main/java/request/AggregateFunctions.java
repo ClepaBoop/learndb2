@@ -97,25 +97,55 @@ public class AggregateFunctions {
                                                         "        store_id\n" +
                                                         "order by\n" +
                                                         "        store_id\n";
-//    не работает
-    public static String nullInGroupBy_9of13 = "select \n" +
-                                                    "        s.name as store_name,  \n" +
-                                                    "        e.first_name || ' ' || e.last_name as manager_full_name,  \n" +
-                                                    "        count(e.manager_id) as amount_employees,\n" +
-                                                    "        count(*)  \n" +
-                                                    "from     \n" +
-                                                    "        learndb2.store s\n" +
-                                                    "left join \n" +
-                                                    "        learndb2.employee e\n" +
-                                                    "on \n" +
-                                                    "        s.store_id = e.store_id\n" +
-                                                    "group by \n" +
-                                                    "        s.name,\n" +
-                                                    "        manager_full_name,\n" +
-                                                    "        e.manager_id\n" +
-                                                    "order by\n" +
-                                                    "        store_name,\n" +
-                                                    "        manager_full_name";
+////    не работает
+//// TODO: 27.04.2021 нужно добавить
+////    where
+////    e.store_id = s.store_id
+////    and
+////            (e.rank_id != 'SELLER'
+//    public static String nullInGroupBy_9of13 = "select \n" +
+//                                                    "        s.name as store_name,  \n" +
+//                                                    "        e.first_name || ' ' || e.last_name as manager_full_name,  \n" +
+//                                                    "        count(e.manager_id) as amount_employees,\n" +
+//                                                    "        count(*)  \n" +
+//                                                    "from     \n" +
+//                                                    "        learndb2.store s\n" +
+//                                                    "left join \n" +
+//                                                    "        learndb2.employee e\n" +
+//                                                    "on \n" +
+//                                                    "        s.store_id = e.store_id\n" +
+//                                                    "group by \n" +
+//                                                    "        s.name,\n" +
+//                                                    "        manager_full_name,\n" +
+//                                                    "        e.manager_id\n" +
+//                                                    "order by\n" +
+//                                                    "        store_name,\n" +
+//                                                    "        manager_full_name";
+
+    // TODO: 01.05.2021 работающий варик
+    public static String nullInGroupBy_9of13 = "select\n" +
+                                                "    s.name as store_name ,\n" +
+                                                "    concat(e2.first_name, \"  \", e2.last_name) as manager_full_name,\n" +
+                                                "    count(*) as amount_employees\n" +
+                                                "    from\n" +
+                                                "    learndb2.employee e1\n" +
+                                                "    left join\n" +
+                                                "    learndb2.employee e2\n" +
+                                                "    on\n" +
+                                                "    e2.employee_id = e1.manager_id\n" +
+                                                "    left join\n" +
+                                                "    learndb2.store s\n" +
+                                                "    on\n" +
+                                                "    e1.store_id = s.store_id\n" +
+                                                "    group by\n" +
+                                                "    e1.store_id,\n" +
+                                                "    s.name,\n" +
+                                                "    e2.manager_id,\n" +
+                                                "    manager_full_name\n" +
+                                                "    order by\n" +
+                                                "    store_name ,\n" +
+                                                "    manager_full_name";
+
 
     public static String having_10of13 =    "select\n" +
                                             "        product_id,\n" +
@@ -129,31 +159,72 @@ public class AggregateFunctions {
                                             "        min(price) != max(price)\n" +
                                             "order by\n" +
                                             "        product_id";
+////не работает
+//    public static String rollup_11of13 =    "select\n" +
+//                                            "       store_id, \n" +
+//                                            "       rank_id, \n" +
+//                                            "       count(employee_id) as count_employees  \n" +
+//                                            "from\n" +
+//                                            "        learndb2.employee\n" +
+//                                            "group by rollup\n" +
+//                                            "        (store_id, rank_id, employee_id)\n" +
+//                                            "order by\n" +
+//                                            "        store_id nulls last,\n" +
+//                                            "        rank_id nulls last";
+
+    // TODO: 01.05.2021 хз поч не мог додуматься, employee_id было лишнее
+    public static String rollup_11of13 = "select \n" +
+            "   e1.store_id ,\n" +
+            "   e1.rank_id ,\n" +
+            "   count(*) as count_employees \n" +
+            " from\n" +
+            "   employee e1\n" +
+            " group by\n" +
+            "   rollup(e1.store_id, e1.rank_id)  \n" +
+            " order by\n" +
+            "    store_id,\n" +
+            "    rank_id ";
+
 //не работает
-    public static String rollup_11of13 =    "select\n" +
-                                            "       store_id, \n" +
-                                            "       rank_id, \n" +
-                                            "       count(employee_id) as count_employees  \n" +
-                                            "from\n" +
-                                            "        learndb2.employee\n" +
-                                            "group by rollup\n" +
-                                            "        (store_id, rank_id, employee_id)\n" +
-                                            "order by\n" +
-                                            "        store_id nulls last,\n" +
-                                            "        rank_id nulls last";
-//не работает
-    public static String numberUniqueValues_12of13 =    "select\n" +
-                                                        "        store_id, \n" +
-                                                        "        rank_id, \n" +
-                                                        "        count(employee_id)count_employees \n" +
-                                                        "from\n" +
-                                                        "        learndb2.employee\n" +
-                                                        "group by cube\n" +
-                                                        "        (store_id, rank_id, employee_id)\n" +
-                                                        "order by\n" +
-                                                        "        store_id nulls last,\n" +
-                                                        "        rank_id nulls last";
-    public static String numberUniqueValues_13of13 = "";
+//    public static String numberUniqueValues_12of13 =    "select\n" +
+//                                                        "        store_id, \n" +
+//                                                        "        rank_id, \n" +
+//                                                        "        count(employee_id)count_employees \n" +
+//                                                        "from\n" +
+//                                                        "        learndb2.employee\n" +
+//                                                        "group by cube\n" +
+//                                                        "        (store_id, rank_id, employee_id)\n" +
+//                                                        "order by\n" +
+//                                                        "        store_id nulls last,\n" +
+//                                                        "        rank_id nulls last";
+//
+
+    // TODO: 01.05.2021 та же хуйня что и в прошлом
+    public static String numberUniqueValues_12of13 = "select\n" +
+                                                    "  store_id ,\n" +
+                                                    "  rank_id ,\n" +
+                                                    "  count(*) as count_employees \n" +
+                                                    "from\n" +
+                                                    "  employee\n" +
+                                                    "group by\n" +
+                                                    "  CUBE (store_id , rank_id )\n" +
+                                                    "order by\n" +
+                                                    "  store_id ,\n" +
+
+                                                    "  rank_id ";
+
+    // TODO: 01.05.2021 вообще не было решения, видимо отчаялся тогда)
+    public static String numberUniqueValues_13of13 = "select\n" +
+            "  store_id ,\n" +
+            "  rank_id ,\n" +
+            "  count(*) as count_employees \n" +
+            "from\n" +
+            "  employee\n" +
+            "group by\n" +
+            "  grouping sets((store_id, rank_id ), ())\n" +
+            "order by\n" +
+            "  store_id ,\n" +
+            "  rank_id";
 
 
 

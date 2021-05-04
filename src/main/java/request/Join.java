@@ -66,6 +66,8 @@ public class Join {
                                         "order by \n" +
                                         "        t.time_offset,\n" +
                                         "        c.name";
+
+//    можно select distinct без offset, но вообще можно как то по другому
 //    должно работать как то по другому
     public static String fullJoin = "select \n" +
                                     "        pp.product_id as product_id_price, \n" +
