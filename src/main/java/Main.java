@@ -36,7 +36,7 @@ public class Main {
 //        }
 
 
-        String query = StringFunctions.cCONCAT_1_9;
+        String query = StringFunctions.tRANSLATE_9_9;
 
         ResultSet resultSet = statement.executeQuery(query);
 //        System.out.println(resultSet);
