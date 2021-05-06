@@ -104,7 +104,8 @@ public class SetOperations {
 //                                            "        product_id,\n" +
 //                                            "        price";
 
-    // TODO: 02.05.2021 count это колонка в таблице была. Не заметил в прош раз
+    // 02.05.2021 count это колонка в таблице была. Не заметил в прош раз
+    // 05.05.2021 почему то не работает эта хута count::text, в прошлвй раз вроде работала
     public static String coincidence_6_8 = "select\n" +
                                             "  product_id ,\n" +
                                             "  price ,\n" +
@@ -115,7 +116,9 @@ public class SetOperations {
                                             "select\n" +
                                             "  product_id ,\n" +
                                             "  price ,\n" +
-                                            "  count::text\n" +
+//                                            "  count::text\n" +
+            // STOPSHIP: 05.05.2021 вообще ни как не работает
+//                                            "  cast(count as SIGNED text)\n" +
                                             "from\n" +
                                             "  purchase_item";
 

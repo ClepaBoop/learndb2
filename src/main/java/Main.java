@@ -36,7 +36,8 @@ public class Main {
 //        }
 
 
-        String query = StringFunctions.tRANSLATE_9_9;
+        String query = MathFunctions.to_char_13_13;
+//        String query = SetOperations.coincidence_6_8;
 
         ResultSet resultSet = statement.executeQuery(query);
 //        System.out.println(resultSet);
